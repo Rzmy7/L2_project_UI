@@ -52,10 +52,11 @@
 }
 
 /* --- ROW 2: Search & Filter --- */
-.header-bottom-row {
+.top-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 60px;
+  /* border: 1px black solid; */
 }
 
 /* Search Bar Wrapper */

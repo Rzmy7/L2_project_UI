@@ -1,23 +1,32 @@
-import Sidebar from './components/SideBar.tsx';
-import ReviewsHeader from './components/ReviewHeaderTop.tsx';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Sidebar from './components/SideBar'; // Fixed "SideBar" to "Sidebar"
+import ReviewsPage from './pages/ReviewsPage';
+import DashboardPage from './pages/DashboardPage';
 import './App.css';
 
 function App() {
   return (
-    <div className="app-container">
-      <Sidebar />
-      
-      <main className="main-content">
-        {/* 1. HEADER: Full width (No padding around it) */}
-        <ReviewsHeader />
+    // 1. Router wraps EVERYTHING
+    <BrowserRouter>
+      <div className="app-container">
+        
+        {/* 2. Sidebar sits here ONCE. Inside Router so links work */}
+        <Sidebar />
 
-        {/* 2. CONTENT AREA: This has the padding */}
-        <div className="content-area">
-          {/* Your review cards will go here later */}
-          <p>Review cards will load here...</p>
-        </div>
-      </main>
-    </div>
+        <main className="main-content">
+          <Routes>
+            {/* Redirect root "/" to Dashboard */}
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            
+            {/* The actual pages */}
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/reviews" element={<ReviewsPage />} />
+          </Routes>
+        </main>
+
+      </div>
+    </BrowserRouter>
   );
 }
 
