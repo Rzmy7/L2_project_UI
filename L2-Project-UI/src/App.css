@@ -1,10 +1,21 @@
 /* src/App.css */
 .app-container {
-  display: flex; /* This puts the Sidebar and Main Content next to each other */
+  display: flex;
+  width: 100vw;   /* Force full screen width */
+  height: 100vh;  /* Force full screen height */
 }
 
 .main-content {
-  flex: 1;       /* Take up all remaining space */
-  padding: 40px;
-  background-color: #f4f4f4; /* Light grey background for contrast */
+  flex: 1;        /* Take remaining width */
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  overflow: hidden;
+}
+
+/* New Class for the area BELOW the header */
+.content-area {
+  padding: 32px;  /* Give breathing room to the content, NOT the header */
+  overflow-y: auto; /* Allow scrolling here */
+  height: 100%;
 }
