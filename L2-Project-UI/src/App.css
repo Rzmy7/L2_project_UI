@@ -1,0 +1,10 @@
+/* src/App.css */
+.app-container {
+  display: flex; /* This puts the Sidebar and Main Content next to each other */
+}
+
+.main-content {
+  flex: 1;       /* Take up all remaining space */
+  padding: 40px;
+  background-color: #f4f4f4; /* Light grey background for contrast */
+}
