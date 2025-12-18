@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 import SourcesTable from '../components/SourcesTable';
+import AddSourceModal from '../components/AddSourceModal';
+import EditSourceModal from '../components/EditSourceModal';
 
 const styles = {
   sourcesPage: {
@@ -45,7 +47,10 @@ const styles = {
 };
 
 const ReviewSourcesPage = () => {
-  const [sources] = useState([
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [selectedSource, setSelectedSource] = useState<any>(null);
+  const [sources, setSources] = useState([
     {
       id: 1,
       platform: 'TripAdvisor',
@@ -104,6 +109,17 @@ const ReviewSourcesPage = () => {
     },
   ]);
 
+  const handleEditSource = (source: typeof sources[0]) => {
+    setSelectedSource(source);
+    setIsEditModalOpen(true);
+  };
+
+  const handleSaveSource = (updatedSource: any) => {
+    setSources(sources.map(s => 
+      s.id === updatedSource.id ? updatedSource : s
+    ));
+  };
+
   return (
     <div style={styles.sourcesPage}>
       {/* Header */}
@@ -114,6 +130,7 @@ const ReviewSourcesPage = () => {
         </div>
         <button 
           style={styles.addSourceBtn}
+          onClick={() => setIsModalOpen(true)}
           onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
           onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3b82f6'}
         >
@@ -123,7 +140,24 @@ const ReviewSourcesPage = () => {
       </div>
 
       {/* Sources Table */}
-      <SourcesTable sources={sources} />
+      <SourcesTable sources={sources} onEditSource={handleEditSource} />
+
+      {/* Add Source Modal */}
+      <AddSourceModal 
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+
+      {/* Edit Source Modal */}
+      <EditSourceModal 
+        isOpen={isEditModalOpen}
+        onClose={() => {
+          setIsEditModalOpen(false);
+          setSelectedSource(null);
+        }}
+        source={selectedSource}
+        onSave={handleSaveSource}
+      />
     </div>
   );
 };

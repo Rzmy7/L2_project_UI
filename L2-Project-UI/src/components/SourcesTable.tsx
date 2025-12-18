@@ -12,9 +12,10 @@ interface Source {
 
 interface SourcesTableProps {
   sources: Source[];
+  onEditSource: (source: Source) => void;
 }
 
-const SourcesTable = ({ sources }: SourcesTableProps) => {
+const SourcesTable = ({ sources, onEditSource }: SourcesTableProps) => {
   return (
     <div className="sources-table-container">
       <table className="sources-table">
@@ -44,7 +45,11 @@ const SourcesTable = ({ sources }: SourcesTableProps) => {
                     <Play size={14} />
                     Run Now
                   </button>
-                  <button className="icon-btn edit-btn" title="Edit">
+                  <button 
+                    className="icon-btn edit-btn" 
+                    title="Edit"
+                    onClick={() => onEditSource(source)}
+                  >
                     <Edit2 size={16} />
                   </button>
                   <button className="icon-btn delete-btn" title="Delete">
