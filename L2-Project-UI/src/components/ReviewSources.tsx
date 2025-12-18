@@ -84,7 +84,4 @@ const ReviewSources = () => {
 };
 
 export default ReviewSources;
-  );
-};
-
-export default ReviewSources;
+  
