@@ -1,0 +1,8 @@
+\venv
+\app\test\scraping\screenshots
+\app\test\scraping\Booki
+ngOutput
+__pycache__/
+*.pyc
+instance/
+.env
