@@ -1,4 +1,5 @@
 \venv
+\.venv
 /app/test/scraping/screenshots
 /app/test/scraping/BookingOutput
 __pycache__/
