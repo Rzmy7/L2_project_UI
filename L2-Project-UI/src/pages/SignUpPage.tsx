@@ -24,7 +24,7 @@ const SignUpPage = () => {
       return;
     }
     console.log('Sign up attempt:', { fullName, email, password, accountType });
-    navigate('/dashboard');
+    navigate('/setup');
   };
 
   const styles = {
